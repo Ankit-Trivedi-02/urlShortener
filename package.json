@@ -1,0 +1,15 @@
+{
+  "name": "urlshortner",
+  "version": "1.0.0",
+  "description": "This project will generate a short url for you to use and visit websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/Ankit-Trivedi-02/urlShortener.git"
+  },
+  "author": "Ankit trivedi",
+  "license": "ISC"
+}
