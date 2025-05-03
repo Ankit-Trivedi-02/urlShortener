@@ -4,6 +4,7 @@
   "description": "This project will generate a short url for you to use and visit websites",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,5 +12,9 @@
     "url": "git remote add origin https://github.com/Ankit-Trivedi-02/urlShortener.git"
   },
   "author": "Ankit trivedi",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.14.1"
+  }
 }
