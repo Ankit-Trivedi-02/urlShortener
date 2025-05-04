@@ -3,6 +3,13 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = 8001;
 const routes = require("./routes/url");
+const path = require("path");
+
+
+//settiing views for webpage
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 //Mongo-db Connection
 

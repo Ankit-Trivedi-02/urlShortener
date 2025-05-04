@@ -1,5 +1,20 @@
 const Url = require("../model/url");
 
+
+
+async function handelAllUrls(req,res) {
+    try{
+
+        const allUrls=await Url.find({});
+        res.render('home',{allUrls});
+    }
+    catch{
+        res.render('home',{data:"data failed to load"});
+    }
+    
+}
+
+
 function randomUrl(length) {
     const digit = "abcdefghijklmnopqrstuvwxyz0123456789";
     let url = "";
@@ -54,4 +69,4 @@ async function handleRedirectUrl(req, res) {
 
 
 
-module.exports = { handelInputUrl,handleRedirectUrl };
+module.exports = { handelInputUrl,handleRedirectUrl,handelAllUrls };

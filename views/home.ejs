@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        header {
+            background-color: #0099cc;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            height: 35px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar li {
+            list-style: none;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffd700;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 30px 0;
+            color: #0077aa;
+            font-size: 2rem;
+        }
+
+        .table-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table.data {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .data thead {
+            background-color: #0077aa;
+            color: white;
+        }
+
+        .data th,
+        .data td {
+            padding: 16px 20px;
+            text-align: center;
+            font-size: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data tr:hover {
+          /* background-color: #f0f0f0; */
+        }
+
+        .data a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .data a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            table.data,
+            .data thead,
+            .data tbody,
+            .data th,
+            .data td,
+            .data tr {
+                display: block;
+            }
+
+            .data tr {
+                margin-bottom: 15px;
+            }
+
+            .data td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            .data td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 20px;
+                width: 45%;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .data thead {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://www.jamiesonpartners.co.nz/wp-content/uploads/2018/11/cropped-small-logo.png" alt="logo">
+        <ul class="navbar">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Sign In</a></li>
+        </ul>
+    </header>
+
+    <h1>Welcome to our URL Shortener</h1>
+
+    <div class="table-wrapper">
+        <table class="data">
+            <thead>
+                <tr>
+                    <th>Original URL</th>
+                    <th>Short URL</th>
+                    <th>Clicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% allUrls.forEach(Url => { %>
+                    <tr>
+                        <td data-label="Original URL"><%= Url.originUrl %></td>
+                        <td data-label="Short URL">
+                            <a href="/<%= Url.shortID %>" target="_blank">
+                                <%= Url.shortID %>
+                            </a>
+                        </td>
+                        <td data-label="Clicks"><%= Url.visitHistory.length %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
