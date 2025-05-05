@@ -37,11 +37,12 @@ async function handelInputUrl(req, res) {
             originUrl,
             visitHistory: []
         });
-
-        res.status(201).json(newUrl);
-    } catch (error) {
-        res.status(500).json({ msg: "Server error", error: error.message });
+            const allUrls=await Url.find({});
+            res.render('home',{allUrls});
     }
+        catch{
+            res.render('home',{data:"data failed to load"});
+        }
 }
 
 

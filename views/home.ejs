@@ -155,6 +155,7 @@
                     <th>Original URL</th>
                     <th>Short URL</th>
                     <th>Clicks</th>
+                    <th><a href="">Remove+</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -167,11 +168,26 @@
                             </a>
                         </td>
                         <td data-label="Clicks"><%= Url.visitHistory.length %></td>
+                        <td>Delete</td>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
     </div>
+
+
+
+    <div class="newInput">
+        <H4>Enter to generate new short url</H4>
+        <form action="/" method="POST">
+            <label for="">Enter URL</label>
+            <input type="text" placeholder="https//google.com" name="originUrl">
+            <button type="submit">generate</button>
+        </form>
+    </div>
+
+
+
 </body>
 
 </html>
