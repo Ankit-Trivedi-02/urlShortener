@@ -2,16 +2,16 @@ const Url = require("../model/url");
 
 
 
-async function handelAllUrls(req,res) {
-    try{
+async function handelAllUrls(req, res) {
+    try {
 
-        const allUrls=await Url.find({});
-        res.render('home',{allUrls});
+        const allUrls = await Url.find({});
+        res.render('home', { allUrls, newUrl: null });
     }
-    catch{
-        res.render('home',{data:"data failed to load"});
+    catch {
+        res.render('home', { data: "data failed to load" });
     }
-    
+
 }
 
 
@@ -37,12 +37,12 @@ async function handelInputUrl(req, res) {
             originUrl,
             visitHistory: []
         });
-            const allUrls=await Url.find({});
-            res.render('home',{allUrls});
+        const allUrls = await Url.find({});
+        res.redirect("/");
     }
-        catch{
-            res.render('home',{data:"data failed to load"});
-        }
+    catch {
+        res.render('home', { data: "data failed to load" });
+    }
 }
 
 
@@ -67,7 +67,15 @@ async function handleRedirectUrl(req, res) {
         res.status(500).json({ msg: "Server error", error: error.message });
     }
 }
+async function handelDeleteUrl(req, res) {
+    try {
+        const shortID = req.params.id;
+        await Url.deleteOne({ shortID });
+        res.redirect("/");
+    } catch (err) {
+        res.status(500).send("Failed to delete URL");
+    }
+}
 
 
-
-module.exports = { handelInputUrl,handleRedirectUrl,handelAllUrls };
+module.exports = { handelInputUrl, handleRedirectUrl, handelAllUrls, handelDeleteUrl };

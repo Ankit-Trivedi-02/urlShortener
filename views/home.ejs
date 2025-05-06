@@ -87,7 +87,7 @@
         }
 
         .data tr:hover {
-          /* background-color: #f0f0f0; */
+            /* background-color: #f0f0f0; */
         }
 
         .data a {
@@ -100,6 +100,7 @@
         }
 
         @media (max-width: 768px) {
+
             table.data,
             .data thead,
             .data tbody,
@@ -155,22 +156,30 @@
                     <th>Original URL</th>
                     <th>Short URL</th>
                     <th>Clicks</th>
-                    <th><a href="">Remove+</a></th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
-                <% allUrls.forEach(Url => { %>
+                <% allUrls.forEach(Url=> { %>
                     <tr>
-                        <td data-label="Original URL"><%= Url.originUrl %></td>
+                        <td data-label="Original URL">
+                            <%= Url.originUrl %>
+                        </td>
                         <td data-label="Short URL">
                             <a href="/<%= Url.shortID %>" target="_blank">
                                 <%= Url.shortID %>
                             </a>
                         </td>
-                        <td data-label="Clicks"><%= Url.visitHistory.length %></td>
-                        <td>Delete</td>
+                        <td data-label="Clicks">
+                            <%= Url.visitHistory.length %>
+                        </td>
+                        <td>
+                            <form action="/<%= Url.shortID %>?_method=DELETE" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
-                <% }) %>
+                    <% }) %>
             </tbody>
         </table>
     </div>
@@ -184,6 +193,13 @@
             <input type="text" placeholder="https//google.com" name="originUrl">
             <button type="submit">generate</button>
         </form>
+        <% if (newUrl) { %>
+            <h1>Your new URL is :
+                <a href="/<%= newUrl.shortID %>" target="_blank">
+                    <%= newUrl.shortID %>
+                </a>
+            </h1>
+            <% } %>
     </div>
 
 

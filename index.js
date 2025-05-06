@@ -4,6 +4,7 @@ const app = express();
 const PORT = 8001;
 const routes = require("./routes/url");
 const path = require("path");
+const methodOverride = require('method-override');
 
 
 //settiing views for webpage
@@ -18,6 +19,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/UrlWebsite")
     .catch((err) => { console.log("error:", err) });
 
 //middle wares
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
