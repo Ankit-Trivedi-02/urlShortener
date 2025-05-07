@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>URL Shortener</title>
     <style>
         * {
@@ -58,6 +58,71 @@
             font-size: 2rem;
         }
 
+        h4 {
+            text-align: center;
+            margin: 40px 0 20px;
+            color: #0077aa;
+            font-size: 1.5rem;
+        }
+
+        .inputUrl {
+            text-align: center;
+            /* margin: 40px 0 20px; */
+            color: #0077aa !important;
+            font-size: 1.2rem !important;
+        }
+
+        .newInput {
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .newInput form {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .newInput label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .newInput input[type="text"] {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .newInput input[type="text"]:focus {
+            border-color: #0099cc;
+        }
+
+        .newInput button {
+            background-color: #0099cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .newInput button:hover {
+            background-color: #007aa3;
+        }
+
         .table-wrapper {
             max-width: 1000px;
             margin: 0 auto;
@@ -84,10 +149,6 @@
             text-align: center;
             font-size: 15px;
             border-bottom: 1px solid #ddd;
-        }
-
-        .data tr:hover {
-            /* background-color: #f0f0f0; */
         }
 
         .data a {
@@ -146,9 +207,15 @@
             <li><a href="#">Sign In</a></li>
         </ul>
     </header>
-
-    <h1>Welcome to our URL Shortener</h1>
-
+    <h4>Enter to generate a new short URL</h4>
+    <div class="newInput">
+        <form action="/url" method="POST">
+            <label class="inputUrl" for="originUrl">Enter URL</label>
+            <input type="text" id="originUrl" name="originUrl" placeholder="https://google.com" required>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+<% if (allUrls) { %>
     <div class="table-wrapper">
         <table class="data">
             <thead>
@@ -173,7 +240,7 @@
                         <td data-label="Clicks">
                             <%= Url.visitHistory.length %>
                         </td>
-                        <td>
+                        <td data-label="Remove">
                             <form action="/<%= Url.shortID %>?_method=DELETE" method="POST">
                                 <button type="submit">Delete</button>
                             </form>
@@ -183,27 +250,7 @@
             </tbody>
         </table>
     </div>
-
-
-
-    <div class="newInput">
-        <H4>Enter to generate new short url</H4>
-        <form action="/" method="POST">
-            <label for="">Enter URL</label>
-            <input type="text" placeholder="https//google.com" name="originUrl">
-            <button type="submit">generate</button>
-        </form>
-        <% if (newUrl) { %>
-            <h1>Your new URL is :
-                <a href="/<%= newUrl.shortID %>" target="_blank">
-                    <%= newUrl.shortID %>
-                </a>
-            </h1>
-            <% } %>
-    </div>
-
-
-
+    <% } %>
 </body>
 
 </html>

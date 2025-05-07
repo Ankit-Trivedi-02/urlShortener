@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = 8001;
 const routes = require("./routes/url");
+const staticRoute=require("./routes/staticRouter")
 const path = require("path");
 const methodOverride = require('method-override');
 
@@ -25,7 +26,8 @@ app.use(express.json());
 
 
 // routes
-app.use("/", routes);
+app.use("/url", routes);
+app.use("/",staticRoute)
 
 //running server
 app.listen(PORT, () => { console.log("Server started at PORT ", PORT) });
