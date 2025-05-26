@@ -14,9 +14,12 @@
   "author": "Ankit trivedi",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cookies": "^0.9.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "method-override": "^3.0.0",
-    "mongoose": "^8.14.1"
+    "mongoose": "^8.14.1",
+    "uuid": "^11.1.0"
   }
 }

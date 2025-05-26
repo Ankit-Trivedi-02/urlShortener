@@ -233,7 +233,7 @@
                             <%= Url.originUrl %>
                         </td>
                         <td data-label="Short URL">
-                            <a href="/<%= Url.shortID %>" target="_blank">
+                            <a href="/url<%= Url.shortID %>" target="_blank">
                                 <%= Url.shortID %>
                             </a>
                         </td>
@@ -241,7 +241,7 @@
                             <%= Url.visitHistory.length %>
                         </td>
                         <td data-label="Remove">
-                            <form action="/<%= Url.shortID %>?_method=DELETE" method="POST">
+                           <form action="/url/<%= Url.shortID %>?_method=DELETE" method="POST">
                                 <button type="submit">Delete</button>
                             </form>
                         </td>

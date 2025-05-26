@@ -14,7 +14,6 @@ async function handelAllUrls(req, res) {
 
 }
 
-
 function randomUrl(length) {
     const digit = "abcdefghijklmnopqrstuvwxyz0123456789";
     let url = "";
@@ -38,7 +37,7 @@ async function handelInputUrl(req, res) {
             visitHistory: []
         });
         const allUrls = await Url.find({});
-        res.redirect("/");
+        res.redirect("/url");
     }
     catch {
         res.render('home', { data: "data failed to load" });
@@ -71,7 +70,7 @@ async function handelDeleteUrl(req, res) {
     try {
         const shortID = req.params.id;
         await Url.deleteOne({ shortID });
-        res.redirect("/");
+        res.redirect("/url");
     } catch (err) {
         res.status(500).send("Failed to delete URL");
     }
